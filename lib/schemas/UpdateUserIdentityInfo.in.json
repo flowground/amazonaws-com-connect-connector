@@ -1,0 +1,71 @@
+{
+    "type": "object",
+    "properties": {
+        "InstanceId": {
+            "required": true,
+            "type": "string"
+        },
+        "UserId": {
+            "required": true,
+            "type": "string"
+        },
+        "requestBody": {
+            "properties": {
+                "IdentityInfo": {
+                    "description": "A <code>UserIdentityInfo</code> object.",
+                    "properties": {
+                        "Email": {
+                            "description": "The email address added to the user account. If you are using SAML for identity management and include this parameter, an <code>InvalidRequestException</code> is returned.",
+                            "type": "string"
+                        },
+                        "FirstName": {
+                            "description": "The first name used in the user account. This is required if you are using Amazon Connect or SAML for identity management.",
+                            "maxLength": 100,
+                            "minLength": 1,
+                            "type": "string"
+                        },
+                        "LastName": {
+                            "description": "The last name used in the user account. This is required if you are using Amazon Connect or SAML for identity management.",
+                            "maxLength": 100,
+                            "minLength": 1,
+                            "type": "string"
+                        }
+                    },
+                    "type": "object"
+                }
+            },
+            "required": [
+                "IdentityInfo"
+            ],
+            "type": "object"
+        },
+        "X_Amz_Content_Sha256": {
+            "required": false,
+            "type": "string"
+        },
+        "X_Amz_Date": {
+            "required": false,
+            "type": "string"
+        },
+        "X_Amz_Algorithm": {
+            "required": false,
+            "type": "string"
+        },
+        "X_Amz_Credential": {
+            "required": false,
+            "type": "string"
+        },
+        "X_Amz_Security_Token": {
+            "required": false,
+            "type": "string"
+        },
+        "X_Amz_Signature": {
+            "required": false,
+            "type": "string"
+        },
+        "X_Amz_SignedHeaders": {
+            "required": false,
+            "type": "string"
+        }
+    }
+}

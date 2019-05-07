@@ -1,0 +1,133 @@
+{
+    "type": "object",
+    "properties": {
+        "MaxResults": {
+            "required": false,
+            "type": "string"
+        },
+        "NextToken": {
+            "required": false,
+            "type": "string"
+        },
+        "InstanceId": {
+            "required": true,
+            "type": "string"
+        },
+        "requestBody": {
+            "properties": {
+                "CurrentMetrics": {
+                    "description": "<p>A list of <code>CurrentMetric</code> objects for the metrics to retrieve. Each <code>CurrentMetric</code> includes a name of a metric to retrieve and the unit to use for it. You must list each metric to retrieve data for in the request.</p> <p>The following metrics are available:</p> <dl> <dt>AGENTS_AVAILABLE</dt> <dd> <p>Unit: COUNT</p> </dd> <dt>AGENTS_ONLINE</dt> <dd> <p>Unit: COUNT</p> </dd> <dt>AGENTS_ON_CALL</dt> <dd> <p>Unit: COUNT</p> </dd> <dt>AGENTS_STAFFED</dt> <dd> <p>Unit: COUNT</p> </dd> <dt>AGENTS_AFTER_CONTACT_WORK</dt> <dd> <p>Unit: COUNT</p> </dd> <dt>AGENTS_NON_PRODUCTIVE</dt> <dd> <p>Unit: COUNT</p> </dd> <dt>AGENTS_ERROR</dt> <dd> <p>Unit: COUNT</p> </dd> <dt>CONTACTS_IN_QUEUE</dt> <dd> <p>Unit: COUNT</p> </dd> <dt>OLDEST_CONTACT_AGE</dt> <dd> <p>Unit: SECONDS</p> </dd> <dt>CONTACTS_SCHEDULED</dt> <dd> <p>Unit: COUNT</p> </dd> </dl>",
+                    "items": {
+                        "description": "A <code>CurrentMetric</code> object that contains the Name and Unit for the metric.",
+                        "properties": {
+                            "Name": {
+                                "description": "The name of the metric.",
+                                "enum": [
+                                    "AGENTS_ONLINE",
+                                    "AGENTS_AVAILABLE",
+                                    "AGENTS_ON_CALL",
+                                    "AGENTS_NON_PRODUCTIVE",
+                                    "AGENTS_AFTER_CONTACT_WORK",
+                                    "AGENTS_ERROR",
+                                    "AGENTS_STAFFED",
+                                    "CONTACTS_IN_QUEUE",
+                                    "OLDEST_CONTACT_AGE",
+                                    "CONTACTS_SCHEDULED"
+                                ],
+                                "type": "string"
+                            },
+                            "Unit": {
+                                "description": "The unit for the metric.",
+                                "enum": [
+                                    "SECONDS",
+                                    "COUNT",
+                                    "PERCENT"
+                                ],
+                                "type": "string"
+                            }
+                        },
+                        "type": "object"
+                    },
+                    "type": "array"
+                },
+                "Filters": {
+                    "description": "<p>A <code>Filters</code> object that contains a list of queue IDs or queue ARNs, up to 100, or list of Channels to use to filter the metrics returned in the response. Metric data is retrieved only for the resources associated with the queue IDs, ARNs, or Channels included in the filter. You can include both IDs and ARNs in the same request. To retrieve metrics for all queues, add the queue ID or ARN for each queue in your instance. Only VOICE is supported for Channels.</p> <p>To find the ARN for a queue, open the queue you want to use in the Amazon Connect Queue editor. The ARN for the queue is displayed in the address bar as part of the URL. For example, the queue ARN is the set of characters at the end of the URL, after 'id=' such as <code>arn:aws:connect:us-east-1:270923740243:instance/78fb859d-1b7d-44b1-8aa3-12f0835c5855/queue/1d1a4575-9618-40ab-bbeb-81e45795fe61</code>. The queue ID is also included in the URL, and is the string after 'queue/'.</p>",
+                    "properties": {
+                        "Channels": {
+                            "description": "The Channel to use as a filter for the metrics returned. Only VOICE is supported.",
+                            "items": {
+                                "enum": [
+                                    "VOICE"
+                                ],
+                                "type": "string"
+                            },
+                            "maxItems": 1,
+                            "type": "array"
+                        },
+                        "Queues": {
+                            "description": "A list of up to 100 queue IDs or queue ARNs to use to filter the metrics retrieved. You can include both IDs and ARNs in a request.",
+                            "items": {
+                                "type": "string"
+                            },
+                            "maxItems": 100,
+                            "minItems": 1,
+                            "type": "array"
+                        }
+                    },
+                    "type": "object"
+                },
+                "Groupings": {
+                    "description": "<p>The grouping applied to the metrics returned. For example, when grouped by QUEUE, the metrics returned apply to each queue rather than aggregated for all queues. If you group by CHANNEL, you should include a Channels filter. The only supported channel is VOICE.</p> <p>If no <code>Grouping</code> is included in the request, a summary of <code>CurrentMetrics</code> is returned.</p>",
+                    "items": {
+                        "enum": [
+                            "QUEUE",
+                            "CHANNEL"
+                        ],
+                        "type": "string"
+                    },
+                    "maxItems": 2,
+                    "type": "array"
+                },
+                "MaxResults": {
+                    "description": " <code>MaxResults</code> indicates the maximum number of results to return per page in the response, between 1 and 100.",
+                    "maximum": 100,
+                    "minimum": 1,
+                    "type": "integer"
+                },
+                "NextToken": {
+                    "description": "<p>The token for the next set of results. Use the value returned in the previous response in the next request to retrieve the next set of results.</p> <p>The token expires after 5 minutes from the time it is created. Subsequent requests that use the <a href=\"\">NextToken</a> must use the same request parameters as the request that generated the token.</p>",
+                    "type": "string"
+                }
+            },
+            "required": [
+                "Filters",
+                "CurrentMetrics"
+            ],
+            "type": "object"
+        },
+        "X_Amz_Date": {
+            "required": false,
+            "type": "string"
+        },
+        "X_Amz_Algorithm": {
+            "required": false,
+            "type": "string"
+        },
+        "X_Amz_Credential": {
+            "required": false,
+            "type": "string"
+        },
+        "X_Amz_Security_Token": {
+            "required": false,
+            "type": "string"
+        },
+        "X_Amz_Signature": {
+            "required": false,
+            "type": "string"
+        },
+        "X_Amz_SignedHeaders": {
+            "required": false,
+            "type": "string"
+        }
+    }
+}

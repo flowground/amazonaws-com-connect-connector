@@ -1,0 +1,397 @@
+{
+    "title": "Amazon Connect Service",
+    "description": "<p>The Amazon Connect API Reference provides descriptions, syntax, and usage examples for each of the Amazon Connect actions, data types, parameters, and errors. Amazon Connect is a cloud-based contact center solution that makes it easy to set up and manage a customer contact center and provide reliable customer engagement at any scale.</p> <p>Throttling limits for the Amazon Connect API operations:</p> <p>For the <code>GetMetricData</code> and <code>GetCurrentMetricData</code> operations, a RateLimit of 5 per second, and a BurstLimit of 8 per second.</p> <p>For all other operations, a RateLimit of 2 per second, and a BurstLimit of 5 per second.</p> <p>You can request an increase to the throttling limits by submitting a <a href=\"https://console.aws.amazon.com/support/home#/case/create?issueType=service-limit-increase\">Amazon Connect service limits increase form</a>. You must be signed in to your AWS account to access the form.</p>",
+    "docsUrl": "https://aws.amazon.com/connect/",
+    "url": "https://api.apis.guru/v2/specs/amazonaws.com/connect/2017-08-08/swagger.json",
+    "envVars": {},
+    "credentials": {
+        "fields": {
+            "server": {
+                "label": "Server",
+                "viewClass": "SelectView",
+                "model": [
+                    "https://connect.amazonaws.com/",
+                    "http://connect.amazonaws.com/",
+                    "--- Custom URL"
+                ],
+                "required": true
+            },
+            "otherServer": {
+                "label": "Custom Server URL",
+                "viewClass": "TextFieldView"
+            },
+            "hmac": {
+                "label": "Authorization (hmac)",
+                "viewClass": "TextFieldView",
+                "note": "Amazon Signature authorization v4"
+            }
+        }
+    },
+    "triggers": {
+        "startFlow": {
+            "main": "./lib/triggers/startFlow.js",
+            "type": "polling",
+            "title": "Start Flow",
+            "fields": {}
+        }
+    },
+    "actions": {
+        "UpdateContactAttributes": {
+            "main": "./lib/actions/UpdateContactAttributes.js",
+            "title": "<p>The <code>UpdateContactAttributes</code> operation lets you programmatically create new, or update existing, contact attributes associated with a contact. You can use the operation to add or update attributes for both ongoing and completed contacts. For example, you can update the customer's name or the reason the customer called while the call is active, or add notes about steps that the agent took during the call that are displayed to the next agent that takes the call. You can also use the <code>UpdateContactAttributes</code> operation to update attributes for a contact using data from your CRM application and save the data with the contact in Amazon Connect. You could also flag calls for additional analysis, such as legal review or identifying abusive callers.</p> <p>Contact attributes are available in Amazon Connect for 24 months, and are then deleted.</p> <p> <i>Important:</i> </p> <p>You cannot use the operation to update attributes for contacts that occurred prior to the release of the API, September 12, 2018. You can update attributes only for contacts that started after the release of the API. If you attempt to update attributes for a contact that occurred prior to the release of the API, a 400 error is returned. This applies also to queued callbacks that were initiated prior to the release of the API but are still active in your instance.</p>",
+            "description": "<p>The <code>UpdateContactAttributes</code> operation lets you programmatically create new, or update existing, contact attributes associated with a contact. You can use the operation to add or update attributes for both ongoing and completed contacts. For example, you can update the customer's name or the reason the customer called while the call is active, or add notes about steps that the agent took during the call that are displayed to the next agent that takes the call. You can also use the <code>UpdateContactAttributes</code> operation to update attributes for a contact using data from your CRM application and save the data with the contact in Amazon Connect. You could also flag calls for additional analysis, such as legal review or identifying abusive callers.</p> <p>Contact attributes are available in Amazon Connect for 24 months, and are then deleted.</p> <p> <i>Important:</i> </p> <p>You cannot use the operation to update attributes for contacts that occurred prior to the release of the API, September 12, 2018. You can update attributes only for contacts that started after the release of the API. If you attempt to update attributes for a contact that occurred prior to the release of the API, a 400 error is returned. This applies also to queued callbacks that were initiated prior to the release of the API but are still active in your instance.</p>",
+            "fields": {
+                "verbose": {
+                    "viewClass": "CheckBoxView",
+                    "label": "Debug this step (log more data)"
+                }
+            },
+            "metadata": {
+                "in": "./lib/schemas/UpdateContactAttributes.in.json",
+                "out": {
+                    "type": "object"
+                }
+            }
+        },
+        "GetContactAttributes": {
+            "main": "./lib/actions/GetContactAttributes.js",
+            "title": "Retrieves the contact attributes associated with a contact.",
+            "description": "Retrieves the contact attributes associated with a contact.",
+            "fields": {
+                "verbose": {
+                    "viewClass": "CheckBoxView",
+                    "label": "Debug this step (log more data)"
+                }
+            },
+            "metadata": {
+                "in": "./lib/schemas/GetContactAttributes.in.json",
+                "out": {
+                    "type": "object"
+                }
+            }
+        },
+        "StartOutboundVoiceContact": {
+            "main": "./lib/actions/StartOutboundVoiceContact.js",
+            "title": "<p>The <code>StartOutboundVoiceContact</code> operation initiates a contact flow to place an outbound call to a customer.</p> <p>If you are using an IAM account, it must have permission to the <code>connect:StartOutboundVoiceContact</code> action.</p> <p>There is a 60 second dialing timeout for this operation. If the call is not connected after 60 seconds, the call fails.</p>",
+            "description": "<p>The <code>StartOutboundVoiceContact</code> operation initiates a contact flow to place an outbound call to a customer.</p> <p>If you are using an IAM account, it must have permission to the <code>connect:StartOutboundVoiceContact</code> action.</p> <p>There is a 60 second dialing timeout for this operation. If the call is not connected after 60 seconds, the call fails.</p>",
+            "fields": {
+                "verbose": {
+                    "viewClass": "CheckBoxView",
+                    "label": "Debug this step (log more data)"
+                }
+            },
+            "metadata": {
+                "in": "./lib/schemas/StartOutboundVoiceContact.in.json",
+                "out": {
+                    "type": "object"
+                }
+            }
+        },
+        "StopContact": {
+            "main": "./lib/actions/StopContact.js",
+            "title": "<p>Ends the contact initiated by the <code>StartOutboundVoiceContact</code> operation.</p> <p>If you are using an IAM account, it must have permission to the <code>connect:StopContact</code> action.</p>",
+            "description": "<p>Ends the contact initiated by the <code>StartOutboundVoiceContact</code> operation.</p> <p>If you are using an IAM account, it must have permission to the <code>connect:StopContact</code> action.</p>",
+            "fields": {
+                "verbose": {
+                    "viewClass": "CheckBoxView",
+                    "label": "Debug this step (log more data)"
+                }
+            },
+            "metadata": {
+                "in": "./lib/schemas/StopContact.in.json",
+                "out": {
+                    "type": "object"
+                }
+            }
+        },
+        "GetCurrentMetricData": {
+            "main": "./lib/actions/GetCurrentMetricData.js",
+            "title": "<p>The <code>GetCurrentMetricData</code> operation retrieves current metric data from your Amazon Connect instance.</p> <p>If you are using an IAM account, it must have permission to the <code>connect:GetCurrentMetricData</code> action.</p>",
+            "description": "<p>The <code>GetCurrentMetricData</code> operation retrieves current metric data from your Amazon Connect instance.</p> <p>If you are using an IAM account, it must have permission to the <code>connect:GetCurrentMetricData</code> action.</p>",
+            "fields": {
+                "verbose": {
+                    "viewClass": "CheckBoxView",
+                    "label": "Debug this step (log more data)"
+                }
+            },
+            "metadata": {
+                "in": "./lib/schemas/GetCurrentMetricData.in.json",
+                "out": {
+                    "type": "object"
+                }
+            }
+        },
+        "GetMetricData": {
+            "main": "./lib/actions/GetMetricData.js",
+            "title": "<p>The <code>GetMetricData</code> operation retrieves historical metrics data from your Amazon Connect instance.</p> <p>If you are using an IAM account, it must have permission to the <code>connect:GetMetricData</code> action.</p>",
+            "description": "<p>The <code>GetMetricData</code> operation retrieves historical metrics data from your Amazon Connect instance.</p> <p>If you are using an IAM account, it must have permission to the <code>connect:GetMetricData</code> action.</p>",
+            "fields": {
+                "verbose": {
+                    "viewClass": "CheckBoxView",
+                    "label": "Debug this step (log more data)"
+                }
+            },
+            "metadata": {
+                "in": "./lib/schemas/GetMetricData.in.json",
+                "out": {
+                    "type": "object"
+                }
+            }
+        },
+        "ListRoutingProfiles": {
+            "main": "./lib/actions/ListRoutingProfiles.js",
+            "title": "Returns an array of <code>RoutingProfileSummary</code> objects that includes information about the routing profiles in your instance.",
+            "description": "Returns an array of <code>RoutingProfileSummary</code> objects that includes information about the routing profiles in your instance.",
+            "fields": {
+                "verbose": {
+                    "viewClass": "CheckBoxView",
+                    "label": "Debug this step (log more data)"
+                }
+            },
+            "metadata": {
+                "in": "./lib/schemas/ListRoutingProfiles.in.json",
+                "out": {
+                    "type": "object"
+                }
+            }
+        },
+        "ListSecurityProfiles": {
+            "main": "./lib/actions/ListSecurityProfiles.js",
+            "title": "Returns an array of SecurityProfileSummary objects that contain information about the security profiles in your instance, including the ARN, Id, and Name of the security profile.",
+            "description": "Returns an array of SecurityProfileSummary objects that contain information about the security profiles in your instance, including the ARN, Id, and Name of the security profile.",
+            "fields": {
+                "verbose": {
+                    "viewClass": "CheckBoxView",
+                    "label": "Debug this step (log more data)"
+                }
+            },
+            "metadata": {
+                "in": "./lib/schemas/ListSecurityProfiles.in.json",
+                "out": {
+                    "type": "object"
+                }
+            }
+        },
+        "ListUserHierarchyGroups": {
+            "main": "./lib/actions/ListUserHierarchyGroups.js",
+            "title": "Returns a <code>UserHierarchyGroupSummaryList</code>, which is an array of <code>HierarchyGroupSummary</code> objects that contain information about the hierarchy groups in your instance.",
+            "description": "Returns a <code>UserHierarchyGroupSummaryList</code>, which is an array of <code>HierarchyGroupSummary</code> objects that contain information about the hierarchy groups in your instance.",
+            "fields": {
+                "verbose": {
+                    "viewClass": "CheckBoxView",
+                    "label": "Debug this step (log more data)"
+                }
+            },
+            "metadata": {
+                "in": "./lib/schemas/ListUserHierarchyGroups.in.json",
+                "out": {
+                    "type": "object"
+                }
+            }
+        },
+        "DescribeUserHierarchyGroup": {
+            "main": "./lib/actions/DescribeUserHierarchyGroup.js",
+            "title": "Returns a <code>HierarchyGroup</code> object that includes information about a hierarchy group in your instance.",
+            "description": "Returns a <code>HierarchyGroup</code> object that includes information about a hierarchy group in your instance.",
+            "fields": {
+                "verbose": {
+                    "viewClass": "CheckBoxView",
+                    "label": "Debug this step (log more data)"
+                }
+            },
+            "metadata": {
+                "in": "./lib/schemas/DescribeUserHierarchyGroup.in.json",
+                "out": {
+                    "type": "object"
+                }
+            }
+        },
+        "DescribeUserHierarchyStructure": {
+            "main": "./lib/actions/DescribeUserHierarchyStructure.js",
+            "title": "Returns a <code>HiearchyGroupStructure</code> object, which contains data about the levels in the agent hierarchy.",
+            "description": "Returns a <code>HiearchyGroupStructure</code> object, which contains data about the levels in the agent hierarchy.",
+            "fields": {
+                "verbose": {
+                    "viewClass": "CheckBoxView",
+                    "label": "Debug this step (log more data)"
+                }
+            },
+            "metadata": {
+                "in": "./lib/schemas/DescribeUserHierarchyStructure.in.json",
+                "out": {
+                    "type": "object"
+                }
+            }
+        },
+        "GetFederationToken": {
+            "main": "./lib/actions/GetFederationToken.js",
+            "title": "Retrieves a token for federation.",
+            "description": "Retrieves a token for federation.",
+            "fields": {
+                "verbose": {
+                    "viewClass": "CheckBoxView",
+                    "label": "Debug this step (log more data)"
+                }
+            },
+            "metadata": {
+                "in": "./lib/schemas/GetFederationToken.in.json",
+                "out": {
+                    "type": "object"
+                }
+            }
+        },
+        "ListUsers": {
+            "main": "./lib/actions/ListUsers.js",
+            "title": "Returns a <code>UserSummaryList</code>, which is an array of <code>UserSummary</code> objects.",
+            "description": "Returns a <code>UserSummaryList</code>, which is an array of <code>UserSummary</code> objects.",
+            "fields": {
+                "verbose": {
+                    "viewClass": "CheckBoxView",
+                    "label": "Debug this step (log more data)"
+                }
+            },
+            "metadata": {
+                "in": "./lib/schemas/ListUsers.in.json",
+                "out": {
+                    "type": "object"
+                }
+            }
+        },
+        "CreateUser": {
+            "main": "./lib/actions/CreateUser.js",
+            "title": "Creates a new user account in your Amazon Connect instance.",
+            "description": "Creates a new user account in your Amazon Connect instance.",
+            "fields": {
+                "verbose": {
+                    "viewClass": "CheckBoxView",
+                    "label": "Debug this step (log more data)"
+                }
+            },
+            "metadata": {
+                "in": "./lib/schemas/CreateUser.in.json",
+                "out": {
+                    "type": "object"
+                }
+            }
+        },
+        "DeleteUser": {
+            "main": "./lib/actions/DeleteUser.js",
+            "title": "Deletes a user account from Amazon Connect.",
+            "description": "Deletes a user account from Amazon Connect.",
+            "fields": {
+                "verbose": {
+                    "viewClass": "CheckBoxView",
+                    "label": "Debug this step (log more data)"
+                }
+            },
+            "metadata": {
+                "in": "./lib/schemas/DeleteUser.in.json",
+                "out": {
+                    "type": "object"
+                }
+            }
+        },
+        "DescribeUser": {
+            "main": "./lib/actions/DescribeUser.js",
+            "title": "Returns a <code>User</code> object that contains information about the user account specified by the <code>UserId</code>.",
+            "description": "Returns a <code>User</code> object that contains information about the user account specified by the <code>UserId</code>.",
+            "fields": {
+                "verbose": {
+                    "viewClass": "CheckBoxView",
+                    "label": "Debug this step (log more data)"
+                }
+            },
+            "metadata": {
+                "in": "./lib/schemas/DescribeUser.in.json",
+                "out": {
+                    "type": "object"
+                }
+            }
+        },
+        "UpdateUserHierarchy": {
+            "main": "./lib/actions/UpdateUserHierarchy.js",
+            "title": "Assigns the specified hierarchy group to the user.",
+            "description": "Assigns the specified hierarchy group to the user.",
+            "fields": {
+                "verbose": {
+                    "viewClass": "CheckBoxView",
+                    "label": "Debug this step (log more data)"
+                }
+            },
+            "metadata": {
+                "in": "./lib/schemas/UpdateUserHierarchy.in.json",
+                "out": {
+                    "type": "object"
+                }
+            }
+        },
+        "UpdateUserIdentityInfo": {
+            "main": "./lib/actions/UpdateUserIdentityInfo.js",
+            "title": "Updates the identity information for the specified user in a <code>UserIdentityInfo</code> object, including email, first name, and last name.",
+            "description": "Updates the identity information for the specified user in a <code>UserIdentityInfo</code> object, including email, first name, and last name.",
+            "fields": {
+                "verbose": {
+                    "viewClass": "CheckBoxView",
+                    "label": "Debug this step (log more data)"
+                }
+            },
+            "metadata": {
+                "in": "./lib/schemas/UpdateUserIdentityInfo.in.json",
+                "out": {
+                    "type": "object"
+                }
+            }
+        },
+        "UpdateUserPhoneConfig": {
+            "main": "./lib/actions/UpdateUserPhoneConfig.js",
+            "title": "Updates the phone configuration settings in the <code>UserPhoneConfig</code> object for the specified user.",
+            "description": "Updates the phone configuration settings in the <code>UserPhoneConfig</code> object for the specified user.",
+            "fields": {
+                "verbose": {
+                    "viewClass": "CheckBoxView",
+                    "label": "Debug this step (log more data)"
+                }
+            },
+            "metadata": {
+                "in": "./lib/schemas/UpdateUserPhoneConfig.in.json",
+                "out": {
+                    "type": "object"
+                }
+            }
+        },
+        "UpdateUserRoutingProfile": {
+            "main": "./lib/actions/UpdateUserRoutingProfile.js",
+            "title": "Assigns the specified routing profile to a user.",
+            "description": "Assigns the specified routing profile to a user.",
+            "fields": {
+                "verbose": {
+                    "viewClass": "CheckBoxView",
+                    "label": "Debug this step (log more data)"
+                }
+            },
+            "metadata": {
+                "in": "./lib/schemas/UpdateUserRoutingProfile.in.json",
+                "out": {
+                    "type": "object"
+                }
+            }
+        },
+        "UpdateUserSecurityProfiles": {
+            "main": "./lib/actions/UpdateUserSecurityProfiles.js",
+            "title": "Updates the security profiles assigned to the user.",
+            "description": "Updates the security profiles assigned to the user.",
+            "fields": {
+                "verbose": {
+                    "viewClass": "CheckBoxView",
+                    "label": "Debug this step (log more data)"
+                }
+            },
+            "metadata": {
+                "in": "./lib/schemas/UpdateUserSecurityProfiles.in.json",
+                "out": {
+                    "type": "object"
+                }
+            }
+        }
+    }
+}

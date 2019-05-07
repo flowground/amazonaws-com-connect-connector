@@ -1,0 +1,137 @@
+{
+    "type": "object",
+    "properties": {
+        "InstanceId": {
+            "required": true,
+            "type": "string"
+        },
+        "Version": {
+            "required": true,
+            "type": "string"
+        },
+        "requestBody": {
+            "properties": {
+                "DirectoryUserId": {
+                    "description": "<p>The unique identifier for the user account in the directory service directory used for identity management. If Amazon Connect is unable to access the existing directory, you can use the <code>DirectoryUserId</code> to authenticate users. If you include the parameter, it is assumed that Amazon Connect cannot access the directory. If the parameter is not included, the <code>UserIdentityInfo</code> is used to authenticate users from your existing directory.</p> <p>This parameter is required if you are using an existing directory for identity management in Amazon Connect when Amazon Connect cannot access your directory to authenticate users. If you are using SAML for identity management and include this parameter, an <code>InvalidRequestException</code> is returned.</p>",
+                    "type": "string"
+                },
+                "HierarchyGroupId": {
+                    "description": "The unique identifier for the hierarchy group to assign to the user created.",
+                    "type": "string"
+                },
+                "IdentityInfo": {
+                    "description": "Information about the user, including email address, first name, and last name.",
+                    "properties": {
+                        "Email": {
+                            "description": "The email address added to the user account. If you are using SAML for identity management and include this parameter, an <code>InvalidRequestException</code> is returned.",
+                            "type": "string"
+                        },
+                        "FirstName": {
+                            "description": "The first name used in the user account. This is required if you are using Amazon Connect or SAML for identity management.",
+                            "maxLength": 100,
+                            "minLength": 1,
+                            "type": "string"
+                        },
+                        "LastName": {
+                            "description": "The last name used in the user account. This is required if you are using Amazon Connect or SAML for identity management.",
+                            "maxLength": 100,
+                            "minLength": 1,
+                            "type": "string"
+                        }
+                    },
+                    "type": "object"
+                },
+                "Password": {
+                    "description": "The password for the user account to create. This is required if you are using Amazon Connect for identity management. If you are using SAML for identity management and include this parameter, an <code>InvalidRequestException</code> is returned.",
+                    "pattern": "/^(?=.*[a-z])(?=.*[A-Z])(?=.*\\d)[a-zA-Z\\d\\S]{8,64}$/",
+                    "type": "string"
+                },
+                "PhoneConfig": {
+                    "description": "Specifies the phone settings for the user, including <code>AfterContactWorkTimeLimit</code>, <code>AutoAccept</code>, <code>DeskPhoneNumber</code>, and <code>PhoneType</code>.",
+                    "properties": {
+                        "AfterContactWorkTimeLimit": {
+                            "description": "The After Call Work (ACW) timeout setting, in seconds, for the user.",
+                            "minimum": 0,
+                            "type": "integer"
+                        },
+                        "AutoAccept": {
+                            "description": "The Auto accept setting for the user, Yes or No.",
+                            "type": "boolean"
+                        },
+                        "DeskPhoneNumber": {
+                            "description": "The phone number for the user's desk phone.",
+                            "type": "string"
+                        },
+                        "PhoneType": {
+                            "description": "The phone type selected for the user, either Soft phone or Desk phone.",
+                            "enum": [
+                                "SOFT_PHONE",
+                                "DESK_PHONE"
+                            ],
+                            "type": "string"
+                        }
+                    },
+                    "required": [
+                        "PhoneType"
+                    ],
+                    "type": "object"
+                },
+                "RoutingProfileId": {
+                    "description": "The unique identifier for the routing profile to assign to the user created.",
+                    "type": "string"
+                },
+                "SecurityProfileIds": {
+                    "description": "The unique identifier of the security profile to assign to the user created.",
+                    "items": {
+                        "type": "string"
+                    },
+                    "maxItems": 10,
+                    "minItems": 1,
+                    "type": "array"
+                },
+                "Username": {
+                    "description": "The user name in Amazon Connect for the account to create. If you are using SAML for identity management in your Amazon Connect, the value for <code>Username</code> can include up to 64 characters from [a-zA-Z0-9_-.\\@]+.",
+                    "maxLength": 20,
+                    "minLength": 1,
+                    "pattern": "[a-zA-Z0-9\\_\\-\\.]+",
+                    "type": "string"
+                }
+            },
+            "required": [
+                "Username",
+                "PhoneConfig",
+                "SecurityProfileIds",
+                "RoutingProfileId"
+            ],
+            "type": "object"
+        },
+        "X_Amz_Content_Sha256": {
+            "required": false,
+            "type": "string"
+        },
+        "X_Amz_Date": {
+            "required": false,
+            "type": "string"
+        },
+        "X_Amz_Algorithm": {
+            "required": false,
+            "type": "string"
+        },
+        "X_Amz_Credential": {
+            "required": false,
+            "type": "string"
+        },
+        "X_Amz_Security_Token": {
+            "required": false,
+            "type": "string"
+        },
+        "X_Amz_Signature": {
+            "required": false,
+            "type": "string"
+        },
+        "X_Amz_SignedHeaders": {
+            "required": false,
+            "type": "string"
+        }
+    }
+}

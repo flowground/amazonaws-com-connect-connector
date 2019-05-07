@@ -1,0 +1,187 @@
+{
+    "type": "object",
+    "properties": {
+        "MaxResults": {
+            "required": false,
+            "type": "string"
+        },
+        "NextToken": {
+            "required": false,
+            "type": "string"
+        },
+        "InstanceId": {
+            "required": true,
+            "type": "string"
+        },
+        "requestBody": {
+            "properties": {
+                "EndTime": {
+                    "description": "<p>The timestamp, in UNIX Epoch time format, at which to end the reporting interval for the retrieval of historical metrics data. The time must be specified using an interval of 5 minutes, such as 11:00, 11:05, 11:10, and must be later than the <code>StartTime</code> timestamp.</p> <p>The time range between <code>StartTime</code> and <code>EndTime</code> must be less than 24 hours.</p>",
+                    "format": "date-time",
+                    "type": "string"
+                },
+                "Filters": {
+                    "description": "<p>A <code>Filters</code> object that contains a list of queue IDs or queue ARNs, up to 100, or a list of Channels to use to filter the metrics returned in the response. Metric data is retrieved only for the resources associated with the IDs, ARNs, or Channels included in the filter. You can use both IDs and ARNs together in a request. Only VOICE is supported for Channel.</p> <p>To find the ARN for a queue, open the queue you want to use in the Amazon Connect Queue editor. The ARN for the queue is displayed in the address bar as part of the URL. For example, the queue ARN is the set of characters at the end of the URL, after 'id=' such as <code>arn:aws:connect:us-east-1:270923740243:instance/78fb859d-1b7d-44b1-8aa3-12f0835c5855/queue/1d1a4575-9618-40ab-bbeb-81e45795fe61</code>. The queue ID is also included in the URL, and is the string after 'queue/'.</p>",
+                    "properties": {
+                        "Channels": {
+                            "description": "The Channel to use as a filter for the metrics returned. Only VOICE is supported.",
+                            "items": {
+                                "enum": [
+                                    "VOICE"
+                                ],
+                                "type": "string"
+                            },
+                            "maxItems": 1,
+                            "type": "array"
+                        },
+                        "Queues": {
+                            "description": "A list of up to 100 queue IDs or queue ARNs to use to filter the metrics retrieved. You can include both IDs and ARNs in a request.",
+                            "items": {
+                                "type": "string"
+                            },
+                            "maxItems": 100,
+                            "minItems": 1,
+                            "type": "array"
+                        }
+                    },
+                    "type": "object"
+                },
+                "Groupings": {
+                    "description": "<p>The grouping applied to the metrics returned. For example, when results are grouped by queueId, the metrics returned are grouped by queue. The values returned apply to the metrics for each queue rather than aggregated for all queues.</p> <p>The current version supports grouping by Queue</p> <p>If no <code>Grouping</code> is included in the request, a summary of <code>HistoricalMetrics</code> for all queues is returned.</p>",
+                    "items": {
+                        "enum": [
+                            "QUEUE",
+                            "CHANNEL"
+                        ],
+                        "type": "string"
+                    },
+                    "maxItems": 2,
+                    "type": "array"
+                },
+                "HistoricalMetrics": {
+                    "description": "<p>A list of <code>HistoricalMetric</code> objects that contain the metrics to retrieve with the request.</p> <p>A <code>HistoricalMetric</code> object contains: <code>HistoricalMetricName</code>, <code>Statistic</code>, <code>Threshold</code>, and <code>Unit</code>.</p> <p>You must list each metric to retrieve data for in the request. For each historical metric you include in the request, you must include a <code>Unit</code> and a <code>Statistic</code>. </p> <p>The following historical metrics are available:</p> <dl> <dt>CONTACTS_QUEUED</dt> <dd> <p>Unit: COUNT</p> <p>Statistic: SUM</p> </dd> <dt>CONTACTS_HANDLED</dt> <dd> <p>Unit: COUNT</p> <p>Statistics: SUM</p> </dd> <dt>CONTACTS_ABANDONED</dt> <dd> <p>Unit: COUNT</p> <p>Statistics: SUM</p> </dd> <dt>CONTACTS_CONSULTED</dt> <dd> <p>Unit: COUNT</p> <p>Statistics: SUM</p> </dd> <dt>CONTACTS_AGENT_HUNG_UP_FIRST</dt> <dd> <p>Unit: COUNT</p> <p>Statistics: SUM</p> </dd> <dt>CONTACTS_HANDLED_INCOMING</dt> <dd> <p>Unit: COUNT</p> <p>Statistics: SUM</p> </dd> <dt>CONTACTS_HANDLED_OUTBOUND</dt> <dd> <p>Unit: COUNT</p> <p>Statistics: SUM</p> </dd> <dt>CONTACTS_HOLD_ABANDONS</dt> <dd> <p>Unit: COUNT</p> <p>Statistics: SUM</p> </dd> <dt>CONTACTS_TRANSFERRED_IN</dt> <dd> <p>Unit: COUNT</p> <p>Statistics: SUM</p> </dd> <dt>CONTACTS_TRANSFERRED_OUT</dt> <dd> <p>Unit: COUNT</p> <p>Statistics: SUM</p> </dd> <dt>CONTACTS_TRANSFERRED_IN_FROM_QUEUE</dt> <dd> <p>Unit: COUNT</p> <p>Statistics: SUM</p> </dd> <dt>CONTACTS_TRANSFERRED_OUT_FROM_QUEUE</dt> <dd> <p>Unit: COUNT</p> <p>Statistics: SUM</p> </dd> <dt>CALLBACK_CONTACTS_HANDLED</dt> <dd> <p>Unit: COUNT</p> <p>Statistics: SUM</p> </dd> <dt>CALLBACK_CONTACTS_HANDLED</dt> <dd> <p>Unit: COUNT</p> <p>Statistics: SUM</p> </dd> <dt>API_CONTACTS_HANDLED</dt> <dd> <p>Unit: COUNT</p> <p>Statistics: SUM</p> </dd> <dt>CONTACTS_MISSED</dt> <dd> <p>Unit: COUNT</p> <p>Statistics: SUM</p> </dd> <dt>OCCUPANCY</dt> <dd> <p>Unit: PERCENT</p> <p>Statistics: AVG</p> </dd> <dt>HANDLE_TIME</dt> <dd> <p>Unit: SECONDS</p> <p>Statistics: AVG</p> </dd> <dt>AFTER_CONTACT_WORK_TIME</dt> <dd> <p>Unit: SECONDS</p> <p>Statistics: AVG</p> </dd> <dt>QUEUED_TIME</dt> <dd> <p>Unit: SECONDS</p> <p>Statistics: MAX</p> </dd> <dt>ABANDON_TIME</dt> <dd> <p>Unit: COUNT</p> <p>Statistics: SUM</p> </dd> <dt>QUEUE_ANSWER_TIME</dt> <dd> <p>Unit: SECONDS</p> <p>Statistics: AVG</p> </dd> <dt>HOLD_TIME</dt> <dd> <p>Unit: SECONDS</p> <p>Statistics: AVG</p> </dd> <dt>INTERACTION_TIME</dt> <dd> <p>Unit: SECONDS</p> <p>Statistics: AVG</p> </dd> <dt>INTERACTION_AND_HOLD_TIME</dt> <dd> <p>Unit: SECONDS</p> <p>Statistics: AVG</p> </dd> <dt>SERVICE_LEVEL</dt> <dd> <p>Unit: PERCENT</p> <p>Statistics: AVG</p> <p>Threshold: Only \"Less than\" comparisons are supported, with the following service level thresholds: 15, 20, 25, 30, 45, 60, 90, 120, 180, 240, 300, 600</p> </dd> </dl>",
+                    "items": {
+                        "description": "A <code>HistoricalMetric</code> object that contains the Name, Unit, Statistic, and Threshold for the metric.",
+                        "properties": {
+                            "Name": {
+                                "description": "The name of the historical metric.",
+                                "enum": [
+                                    "CONTACTS_QUEUED",
+                                    "CONTACTS_HANDLED",
+                                    "CONTACTS_ABANDONED",
+                                    "CONTACTS_CONSULTED",
+                                    "CONTACTS_AGENT_HUNG_UP_FIRST",
+                                    "CONTACTS_HANDLED_INCOMING",
+                                    "CONTACTS_HANDLED_OUTBOUND",
+                                    "CONTACTS_HOLD_ABANDONS",
+                                    "CONTACTS_TRANSFERRED_IN",
+                                    "CONTACTS_TRANSFERRED_OUT",
+                                    "CONTACTS_TRANSFERRED_IN_FROM_QUEUE",
+                                    "CONTACTS_TRANSFERRED_OUT_FROM_QUEUE",
+                                    "CONTACTS_MISSED",
+                                    "CALLBACK_CONTACTS_HANDLED",
+                                    "API_CONTACTS_HANDLED",
+                                    "OCCUPANCY",
+                                    "HANDLE_TIME",
+                                    "AFTER_CONTACT_WORK_TIME",
+                                    "QUEUED_TIME",
+                                    "ABANDON_TIME",
+                                    "QUEUE_ANSWER_TIME",
+                                    "HOLD_TIME",
+                                    "INTERACTION_TIME",
+                                    "INTERACTION_AND_HOLD_TIME",
+                                    "SERVICE_LEVEL"
+                                ],
+                                "type": "string"
+                            },
+                            "Statistic": {
+                                "description": "The statistic for the metric.",
+                                "enum": [
+                                    "SUM",
+                                    "MAX",
+                                    "AVG"
+                                ],
+                                "type": "string"
+                            },
+                            "Threshold": {
+                                "description": "The threshold for the metric, used with service level metrics.",
+                                "properties": {
+                                    "Comparison": {
+                                        "description": "The Threshold to use to compare service level metrics to. Only \"Less than\" (LT) comparisons are supported.",
+                                        "enum": [
+                                            "LT"
+                                        ],
+                                        "type": "string"
+                                    },
+                                    "ThresholdValue": {
+                                        "description": "The value of the threshold to compare the metric to. Only \"Less than\" (LT) comparisons are supported.",
+                                        "format": "double",
+                                        "type": "number"
+                                    }
+                                },
+                                "type": "object"
+                            },
+                            "Unit": {
+                                "description": "The unit for the metric.",
+                                "enum": [
+                                    "SECONDS",
+                                    "COUNT",
+                                    "PERCENT"
+                                ],
+                                "type": "string"
+                            }
+                        },
+                        "type": "object"
+                    },
+                    "type": "array"
+                },
+                "MaxResults": {
+                    "description": "Indicates the maximum number of results to return per page in the response, between 1-100.",
+                    "maximum": 100,
+                    "minimum": 1,
+                    "type": "integer"
+                },
+                "NextToken": {
+                    "description": "The token for the next set of results. Use the value returned in the previous response in the next request to retrieve the next set of results.",
+                    "type": "string"
+                },
+                "StartTime": {
+                    "description": "<p>The timestamp, in UNIX Epoch time format, at which to start the reporting interval for the retrieval of historical metrics data. The time must be specified using a multiple of 5 minutes, such as 10:05, 10:10, 10:15.</p> <p> <code>StartTime</code> cannot be earlier than 24 hours before the time of the request. Historical metrics are available in Amazon Connect only for 24 hours.</p>",
+                    "format": "date-time",
+                    "type": "string"
+                }
+            },
+            "required": [
+                "StartTime",
+                "EndTime",
+                "Filters",
+                "HistoricalMetrics"
+            ],
+            "type": "object"
+        },
+        "X_Amz_Date": {
+            "required": false,
+            "type": "string"
+        },
+        "X_Amz_Algorithm": {
+            "required": false,
+            "type": "string"
+        },
+        "X_Amz_Credential": {
+            "required": false,
+            "type": "string"
+        },
+        "X_Amz_Security_Token": {
+            "required": false,
+            "type": "string"
+        },
+        "X_Amz_Signature": {
+            "required": false,
+            "type": "string"
+        },
+        "X_Amz_SignedHeaders": {
+            "required": false,
+            "type": "string"
+        }
+    }
+}

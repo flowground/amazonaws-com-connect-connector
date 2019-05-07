@@ -1,0 +1,79 @@
+{
+    "type": "object",
+    "properties": {
+        "InstanceId": {
+            "required": true,
+            "type": "string"
+        },
+        "UserId": {
+            "required": true,
+            "type": "string"
+        },
+        "requestBody": {
+            "properties": {
+                "PhoneConfig": {
+                    "description": "A <code>UserPhoneConfig</code> object that contains settings for <code>AfterContactWorkTimeLimit</code>, <code>AutoAccept</code>, <code>DeskPhoneNumber</code>, and <code>PhoneType</code> to assign to the user.",
+                    "properties": {
+                        "AfterContactWorkTimeLimit": {
+                            "description": "The After Call Work (ACW) timeout setting, in seconds, for the user.",
+                            "minimum": 0,
+                            "type": "integer"
+                        },
+                        "AutoAccept": {
+                            "description": "The Auto accept setting for the user, Yes or No.",
+                            "type": "boolean"
+                        },
+                        "DeskPhoneNumber": {
+                            "description": "The phone number for the user's desk phone.",
+                            "type": "string"
+                        },
+                        "PhoneType": {
+                            "description": "The phone type selected for the user, either Soft phone or Desk phone.",
+                            "enum": [
+                                "SOFT_PHONE",
+                                "DESK_PHONE"
+                            ],
+                            "type": "string"
+                        }
+                    },
+                    "required": [
+                        "PhoneType"
+                    ],
+                    "type": "object"
+                }
+            },
+            "required": [
+                "PhoneConfig"
+            ],
+            "type": "object"
+        },
+        "X_Amz_Content_Sha256": {
+            "required": false,
+            "type": "string"
+        },
+        "X_Amz_Date": {
+            "required": false,
+            "type": "string"
+        },
+        "X_Amz_Algorithm": {
+            "required": false,
+            "type": "string"
+        },
+        "X_Amz_Credential": {
+            "required": false,
+            "type": "string"
+        },
+        "X_Amz_Security_Token": {
+            "required": false,
+            "type": "string"
+        },
+        "X_Amz_Signature": {
+            "required": false,
+            "type": "string"
+        },
+        "X_Amz_SignedHeaders": {
+            "required": false,
+            "type": "string"
+        }
+    }
+}
