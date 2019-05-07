@@ -1,11 +1,11 @@
-# ![LOGO](logo.png) Amazon Connect Service MSP Connector
+# ![LOGO](logo.png) Amazon Connect Service **flow**ground Connector
 
 ## Description
 
-A generated MSP connector for the Amazon Connect Service API (version 2017-08-08).
+A generated **flow**ground connector for the Amazon Connect Service API (version 2017-08-08).
 
 Generated from: https://api.apis.guru/v2/specs/amazonaws.com/connect/2017-08-08/swagger.json<br/>
-Generated at: 2019-05-07T11:15:37+03:00
+Generated at: 2019-05-07T17:35:17+03:00
 
 ## API Description
 
@@ -292,7 +292,7 @@ Supported authorization schemes:
 
 ## License
 
-flowground :- Telekom iPaaS / amazonaws-com-connect-connector<br/>
+**flow**ground :- Telekom iPaaS / amazonaws-com-connect-connector<br/>
 Copyright © 2019, [Deutsche Telekom AG](https://www.telekom.de)<br/>
 contact: flowground@telekom.de
 
