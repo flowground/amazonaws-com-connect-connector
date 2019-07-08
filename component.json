@@ -1,6 +1,6 @@
 {
     "title": "Amazon Connect Service",
-    "description": "<p>The Amazon Connect API Reference provides descriptions, syntax, and usage examples for each of the Amazon Connect actions, data types, parameters, and errors. Amazon Connect is a cloud-based contact center solution that makes it easy to set up and manage a customer contact center and provide reliable customer engagement at any scale.</p> <p>Throttling limits for the Amazon Connect API operations:</p> <p>For the <code>GetMetricData</code> and <code>GetCurrentMetricData</code> operations, a RateLimit of 5 per second, and a BurstLimit of 8 per second.</p> <p>For all other operations, a RateLimit of 2 per second, and a BurstLimit of 5 per second.</p> <p>You can request an increase to the throttling limits by submitting a <a href=\"https://console.aws.amazon.com/support/home#/case/create?issueType=service-limit-increase\">Amazon Connect service limits increase form</a>. You must be signed in to your AWS account to access the form.</p>",
+    "description": "The Amazon Connect API Reference provides descriptions, syntax, and usage\nexamples for each of the Amazon Connect actions, data types, parameters, and\nerrors. Amazon Connect is a cloud-based contact center solution that makes it\neasy to set up and manage a customer contact center and provide reliable\ncustomer engagement at any scale.\n\nThrottling limits for the Amazon Connect API operations:\n\nFor the GetMetricData and GetCurrentMetricData operations, a RateLimit of 5 per\nsecond, and a BurstLimit of 8 per second.\n\nFor all other operations, a RateLimit of 2 per second, and a BurstLimit of 5 per\nsecond.\n\nYou can request an increase to the throttling limits by submitting a Amazon\nConnect service limits increase form\n[https://console.aws.amazon.com/support/home#/case/create?issueType=service-limit-increase]\n. You must be signed in to your AWS account to access the form.",
     "docsUrl": "https://aws.amazon.com/connect/",
     "url": "https://api.apis.guru/v2/specs/amazonaws.com/connect/2017-08-08/swagger.json",
     "envVars": {},
@@ -20,7 +20,7 @@
                 "label": "Custom Server URL",
                 "viewClass": "TextFieldView"
             },
-            "hmac": {
+            "auth_hmac": {
                 "label": "Authorization (hmac)",
                 "viewClass": "TextFieldView",
                 "note": "Amazon Signature authorization v4"
@@ -38,8 +38,8 @@
     "actions": {
         "UpdateContactAttributes": {
             "main": "./lib/actions/UpdateContactAttributes.js",
-            "title": "<p>The <code>UpdateContactAttributes</code> operation lets you programmatically create new, or update existing, contact attributes associated with a contact. You can use the operation to add or update attributes for both ongoing and completed contacts. For example, you can update the customer's name or the reason the customer called while the call is active, or add notes about steps that the agent took during the call that are displayed to the next agent that takes the call. You can also use the <code>UpdateContactAttributes</code> operation to update attributes for a contact using data from your CRM application and save the data with the contact in Amazon Connect. You could also flag calls for additional analysis, such as legal review or identifying abusive callers.</p> <p>Contact attributes are available in Amazon Connect for 24 months, and are then deleted.</p> <p> <i>Important:</i> </p> <p>You cannot use the operation to update attributes for contacts that occurred prior to the release of the API, September 12, 2018. You can update attributes only for contacts that started after the release of the API. If you attempt to update attributes for a contact that occurred prior to the release of the API, a 400 error is returned. This applies also to queued callbacks that were initiated prior to the release of the API but are still active in your instance.</p>",
-            "description": "<p>The <code>UpdateContactAttributes</code> operation lets you programmatically create new, or update existing, contact attributes associated with a contact. You can use the operation to add or update attributes for both ongoing and completed contacts. For example, you can update the customer's name or the reason the customer called while the call is active, or add notes about steps that the agent took during the call that are displayed to the next agent that takes the call. You can also use the <code>UpdateContactAttributes</code> operation to update attributes for a contact using data from your CRM application and save the data with the contact in Amazon Connect. You could also flag calls for additional analysis, such as legal review or identifying abusive callers.</p> <p>Contact attributes are available in Amazon Connect for 24 months, and are then deleted.</p> <p> <i>Important:</i> </p> <p>You cannot use the operation to update attributes for contacts that occurred prior to the release of the API, September 12, 2018. You can update attributes only for contacts that started after the release of the API. If you attempt to update attributes for a contact that occurred prior to the release of the API, a 400 error is returned. This applies also to queued callbacks that were initiated prior to the release of the API but are still active in your instance.</p>",
+            "title": "UpdateContactAttributes",
+            "description": "The UpdateContactAttributes operation lets you programmatically create new, or\nupdate existing, contact attributes associated with a contact. You can use the\noperation to add or update attributes for both ongoing and completed contacts.\nFor example, you can update the customer's name or the reason the customer\ncalled while the call is active, or add notes about steps that the agent took\nduring the call that are displayed to the next agent that takes the call. You\ncan also use the UpdateContactAttributes operation to update attributes for a\ncontact using data from your CRM application and save the data with the contact\nin Amazon Connect. You could also flag calls for additional analysis, such as\nlegal review or identifying abusive callers.\n\nContact attributes are available in Amazon Connect for 24 months, and are then\ndeleted.\n\n Important: \n\nYou cannot use the operation to update attributes for contacts that occurred\nprior to the release of the API, September 12, 2018. You can update attributes\nonly for contacts that started after the release of the API. If you attempt to\nupdate attributes for a contact that occurred prior to the release of the API, a\n400 error is returned. This applies also to queued callbacks that were initiated\nprior to the release of the API but are still active in your instance.",
             "fields": {
                 "verbose": {
                     "viewClass": "CheckBoxView",
@@ -55,7 +55,7 @@
         },
         "GetContactAttributes": {
             "main": "./lib/actions/GetContactAttributes.js",
-            "title": "Retrieves the contact attributes associated with a contact.",
+            "title": "GetContactAttributes",
             "description": "Retrieves the contact attributes associated with a contact.",
             "fields": {
                 "verbose": {
@@ -72,8 +72,8 @@
         },
         "StartOutboundVoiceContact": {
             "main": "./lib/actions/StartOutboundVoiceContact.js",
-            "title": "<p>The <code>StartOutboundVoiceContact</code> operation initiates a contact flow to place an outbound call to a customer.</p> <p>If you are using an IAM account, it must have permission to the <code>connect:StartOutboundVoiceContact</code> action.</p> <p>There is a 60 second dialing timeout for this operation. If the call is not connected after 60 seconds, the call fails.</p>",
-            "description": "<p>The <code>StartOutboundVoiceContact</code> operation initiates a contact flow to place an outbound call to a customer.</p> <p>If you are using an IAM account, it must have permission to the <code>connect:StartOutboundVoiceContact</code> action.</p> <p>There is a 60 second dialing timeout for this operation. If the call is not connected after 60 seconds, the call fails.</p>",
+            "title": "StartOutboundVoiceContact",
+            "description": "The StartOutboundVoiceContact operation initiates a contact flow to place an\noutbound call to a customer.\n\nIf you are using an IAM account, it must have permission to the \nconnect:StartOutboundVoiceContact action.\n\nThere is a 60 second dialing timeout for this operation. If the call is not\nconnected after 60 seconds, the call fails.",
             "fields": {
                 "verbose": {
                     "viewClass": "CheckBoxView",
@@ -89,8 +89,8 @@
         },
         "StopContact": {
             "main": "./lib/actions/StopContact.js",
-            "title": "<p>Ends the contact initiated by the <code>StartOutboundVoiceContact</code> operation.</p> <p>If you are using an IAM account, it must have permission to the <code>connect:StopContact</code> action.</p>",
-            "description": "<p>Ends the contact initiated by the <code>StartOutboundVoiceContact</code> operation.</p> <p>If you are using an IAM account, it must have permission to the <code>connect:StopContact</code> action.</p>",
+            "title": "StopContact",
+            "description": "Ends the contact initiated by the StartOutboundVoiceContact operation.\n\nIf you are using an IAM account, it must have permission to the \nconnect:StopContact action.",
             "fields": {
                 "verbose": {
                     "viewClass": "CheckBoxView",
@@ -106,8 +106,8 @@
         },
         "GetCurrentMetricData": {
             "main": "./lib/actions/GetCurrentMetricData.js",
-            "title": "<p>The <code>GetCurrentMetricData</code> operation retrieves current metric data from your Amazon Connect instance.</p> <p>If you are using an IAM account, it must have permission to the <code>connect:GetCurrentMetricData</code> action.</p>",
-            "description": "<p>The <code>GetCurrentMetricData</code> operation retrieves current metric data from your Amazon Connect instance.</p> <p>If you are using an IAM account, it must have permission to the <code>connect:GetCurrentMetricData</code> action.</p>",
+            "title": "GetCurrentMetricData",
+            "description": "The GetCurrentMetricData operation retrieves current metric data from your\nAmazon Connect instance.\n\nIf you are using an IAM account, it must have permission to the \nconnect:GetCurrentMetricData action.",
             "fields": {
                 "verbose": {
                     "viewClass": "CheckBoxView",
@@ -123,8 +123,8 @@
         },
         "GetMetricData": {
             "main": "./lib/actions/GetMetricData.js",
-            "title": "<p>The <code>GetMetricData</code> operation retrieves historical metrics data from your Amazon Connect instance.</p> <p>If you are using an IAM account, it must have permission to the <code>connect:GetMetricData</code> action.</p>",
-            "description": "<p>The <code>GetMetricData</code> operation retrieves historical metrics data from your Amazon Connect instance.</p> <p>If you are using an IAM account, it must have permission to the <code>connect:GetMetricData</code> action.</p>",
+            "title": "GetMetricData",
+            "description": "The GetMetricData operation retrieves historical metrics data from your Amazon\nConnect instance.\n\nIf you are using an IAM account, it must have permission to the \nconnect:GetMetricData action.",
             "fields": {
                 "verbose": {
                     "viewClass": "CheckBoxView",
@@ -140,7 +140,7 @@
         },
         "ListRoutingProfiles": {
             "main": "./lib/actions/ListRoutingProfiles.js",
-            "title": "Returns an array of <code>RoutingProfileSummary</code> objects that includes information about the routing profiles in your instance.",
+            "title": "ListRoutingProfiles",
             "description": "Returns an array of <code>RoutingProfileSummary</code> objects that includes information about the routing profiles in your instance.",
             "fields": {
                 "verbose": {
@@ -157,7 +157,7 @@
         },
         "ListSecurityProfiles": {
             "main": "./lib/actions/ListSecurityProfiles.js",
-            "title": "Returns an array of SecurityProfileSummary objects that contain information about the security profiles in your instance, including the ARN, Id, and Name of the security profile.",
+            "title": "ListSecurityProfiles",
             "description": "Returns an array of SecurityProfileSummary objects that contain information about the security profiles in your instance, including the ARN, Id, and Name of the security profile.",
             "fields": {
                 "verbose": {
@@ -174,7 +174,7 @@
         },
         "ListUserHierarchyGroups": {
             "main": "./lib/actions/ListUserHierarchyGroups.js",
-            "title": "Returns a <code>UserHierarchyGroupSummaryList</code>, which is an array of <code>HierarchyGroupSummary</code> objects that contain information about the hierarchy groups in your instance.",
+            "title": "ListUserHierarchyGroups",
             "description": "Returns a <code>UserHierarchyGroupSummaryList</code>, which is an array of <code>HierarchyGroupSummary</code> objects that contain information about the hierarchy groups in your instance.",
             "fields": {
                 "verbose": {
@@ -191,7 +191,7 @@
         },
         "DescribeUserHierarchyGroup": {
             "main": "./lib/actions/DescribeUserHierarchyGroup.js",
-            "title": "Returns a <code>HierarchyGroup</code> object that includes information about a hierarchy group in your instance.",
+            "title": "DescribeUserHierarchyGroup",
             "description": "Returns a <code>HierarchyGroup</code> object that includes information about a hierarchy group in your instance.",
             "fields": {
                 "verbose": {
@@ -208,7 +208,7 @@
         },
         "DescribeUserHierarchyStructure": {
             "main": "./lib/actions/DescribeUserHierarchyStructure.js",
-            "title": "Returns a <code>HiearchyGroupStructure</code> object, which contains data about the levels in the agent hierarchy.",
+            "title": "DescribeUserHierarchyStructure",
             "description": "Returns a <code>HiearchyGroupStructure</code> object, which contains data about the levels in the agent hierarchy.",
             "fields": {
                 "verbose": {
@@ -225,7 +225,7 @@
         },
         "GetFederationToken": {
             "main": "./lib/actions/GetFederationToken.js",
-            "title": "Retrieves a token for federation.",
+            "title": "GetFederationToken",
             "description": "Retrieves a token for federation.",
             "fields": {
                 "verbose": {
@@ -242,7 +242,7 @@
         },
         "ListUsers": {
             "main": "./lib/actions/ListUsers.js",
-            "title": "Returns a <code>UserSummaryList</code>, which is an array of <code>UserSummary</code> objects.",
+            "title": "ListUsers",
             "description": "Returns a <code>UserSummaryList</code>, which is an array of <code>UserSummary</code> objects.",
             "fields": {
                 "verbose": {
@@ -259,7 +259,7 @@
         },
         "CreateUser": {
             "main": "./lib/actions/CreateUser.js",
-            "title": "Creates a new user account in your Amazon Connect instance.",
+            "title": "CreateUser",
             "description": "Creates a new user account in your Amazon Connect instance.",
             "fields": {
                 "verbose": {
@@ -276,7 +276,7 @@
         },
         "DeleteUser": {
             "main": "./lib/actions/DeleteUser.js",
-            "title": "Deletes a user account from Amazon Connect.",
+            "title": "DeleteUser",
             "description": "Deletes a user account from Amazon Connect.",
             "fields": {
                 "verbose": {
@@ -293,7 +293,7 @@
         },
         "DescribeUser": {
             "main": "./lib/actions/DescribeUser.js",
-            "title": "Returns a <code>User</code> object that contains information about the user account specified by the <code>UserId</code>.",
+            "title": "DescribeUser",
             "description": "Returns a <code>User</code> object that contains information about the user account specified by the <code>UserId</code>.",
             "fields": {
                 "verbose": {
@@ -310,7 +310,7 @@
         },
         "UpdateUserHierarchy": {
             "main": "./lib/actions/UpdateUserHierarchy.js",
-            "title": "Assigns the specified hierarchy group to the user.",
+            "title": "UpdateUserHierarchy",
             "description": "Assigns the specified hierarchy group to the user.",
             "fields": {
                 "verbose": {
@@ -327,7 +327,7 @@
         },
         "UpdateUserIdentityInfo": {
             "main": "./lib/actions/UpdateUserIdentityInfo.js",
-            "title": "Updates the identity information for the specified user in a <code>UserIdentityInfo</code> object, including email, first name, and last name.",
+            "title": "UpdateUserIdentityInfo",
             "description": "Updates the identity information for the specified user in a <code>UserIdentityInfo</code> object, including email, first name, and last name.",
             "fields": {
                 "verbose": {
@@ -344,7 +344,7 @@
         },
         "UpdateUserPhoneConfig": {
             "main": "./lib/actions/UpdateUserPhoneConfig.js",
-            "title": "Updates the phone configuration settings in the <code>UserPhoneConfig</code> object for the specified user.",
+            "title": "UpdateUserPhoneConfig",
             "description": "Updates the phone configuration settings in the <code>UserPhoneConfig</code> object for the specified user.",
             "fields": {
                 "verbose": {
@@ -361,7 +361,7 @@
         },
         "UpdateUserRoutingProfile": {
             "main": "./lib/actions/UpdateUserRoutingProfile.js",
-            "title": "Assigns the specified routing profile to a user.",
+            "title": "UpdateUserRoutingProfile",
             "description": "Assigns the specified routing profile to a user.",
             "fields": {
                 "verbose": {
@@ -378,7 +378,7 @@
         },
         "UpdateUserSecurityProfiles": {
             "main": "./lib/actions/UpdateUserSecurityProfiles.js",
-            "title": "Updates the security profiles assigned to the user.",
+            "title": "UpdateUserSecurityProfiles",
             "description": "Updates the security profiles assigned to the user.",
             "fields": {
                 "verbose": {
